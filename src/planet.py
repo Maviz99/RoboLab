@@ -23,6 +23,26 @@ Value:  -1 if blocked path
         never 0
 """
 
+Node = Tuple[int, int]
+"""
+Node represented by a tuple of two integers
+
+First integer: x-coordinate
+Second integer: y-coordinate
+"""
+
+OutgoingPaths = Dict[Direction, Tuple[Node, Direction, Weight]]
+"""
+Dictionary with all paths starting at a Node
+
+Key: Direction of the path
+Value: Tuple with (End-)Node, (End-)Direction and Weight of the path
+"""
+
+ShortestPath = List[Tuple[Node, Direction]]
+"""
+Path represented by a list of tuples, each with a Node and a Direction
+"""
 
 class Planet:
     """
@@ -36,8 +56,8 @@ class Planet:
         self.paths = {}
 
     # DO NOT EDIT THE METHOD SIGNATURE
-    def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
-                 weight: int):
+    def add_path(self, start: Tuple[Node, Direction], target: Tuple[Node, Direction],
+                 weight: Weight):
         """
          Adds a bidirectional path defined between the start and end coordinates to the map and assigns the weight to it
 
@@ -53,7 +73,7 @@ class Planet:
         pass
 
     # DO NOT EDIT THE METHOD SIGNATURE
-    def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
+    def get_paths(self) -> Dict[Node, OutgoingPaths]:
         """
         Returns all paths
 
@@ -77,7 +97,7 @@ class Planet:
         pass
 
     # DO NOT EDIT THE METHOD SIGNATURE
-    def shortest_path(self, start: Tuple[int, int], target: Tuple[int, int]) -> Optional[List[Tuple[Tuple[int, int], Direction]]]:
+    def shortest_path(self, start: Node, target: Node) -> Optional[ShortestPath]:
         """
         Returns a shortest path between two nodes
 
