@@ -77,7 +77,14 @@ class Planet:
         #Überprüfen des Existenz des Startknotens im paths:
         if start_node not in self.paths:
             self.paths[start_node]={}
-
+        #Target Node mit bestimmten Distanz im Path hinzufügen
+        self.paths[start_node][start_direction] = (target_node, target_direction, weight)    
+        #Wir schreiben jetzt den Weg in andere Richtung:
+        if target_node not in self.paths:
+            self.paths[target_node] = {}
+        reverse_direction = (target_direction + 180) % 360
+        #Den Rückweg im Path hinzufügen:
+        self.paths[target_node][reverse_direction] = (start_node, start_direction, weight)    
 
 
 
