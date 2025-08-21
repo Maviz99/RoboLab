@@ -74,6 +74,9 @@ class Planet:
         start_node , start_direction = start
         #Ziel Informationen:
         target_node , target_direction = target
+        #Überprüfen des Existenz des Startknotens im paths:
+        if start_node not in self.paths:
+            self.paths[start_node]={}
 
 
 
