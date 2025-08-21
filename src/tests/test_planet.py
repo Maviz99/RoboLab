@@ -49,18 +49,32 @@ class TestRoboLabPlanet(unittest.TestCase):
         # Initialize your data structure here
         self.planet = Planet()
         # self.planet.add_path(...)
+        self.planet.add_path(((0, 0), Direction.NORTH), ((0, 1), Direction.SOUTH), 50)
+        self.planet.add_path(((0, 1), Direction.EAST), ((1, 1), Direction.WEST), 50)
+        self.planet.add_path(((1, 1), Direction.SOUTH), ((1, 0), Direction.NORTH), 50)
 
     def test_integrity(self):
         """
         This test should check that the dictionary returned by "planet.get_paths()" matches the expected structure
         """
-        self.fail('implement me!')
+        expected_paths = {
+            (0, 0): {Direction.NORTH: ((0, 1), Direction.SOUTH, 50)},
+            (0, 1): {Direction.SOUTH: ((0, 0), Direction.NORTH, 50), Direction.EAST: ((1, 1), Direction.WEST, 50)},
+            (1, 1): {Direction.WEST: ((0, 1), Direction.EAST, 50), Direction.SOUTH: ((1, 0), Direction.NORTH, 50)},
+            (1, 0): {Direction.NORTH: ((1, 1), Direction.SOUTH, 50)}
+        }
+        #self.fail('implement me!')
+        # Überprüfen das erwartete Ergebnis:
+        self.assertDictEqual(self.planet.get_paths(), expected_paths)
 
     def test_empty_planet(self):
         """
         This test should check that an empty planet really is empty
         """
-        self.fail('implement me!')
+        #self.fail('implement me!')
+        empty_planet = Planet()
+        # Überprüfen, ob ein leeres Planet wirklich leer ist 
+        self.assertDictEqual(empty_planet.get_paths(), {})
 
     def test_target(self):
         """
