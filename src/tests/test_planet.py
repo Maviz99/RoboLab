@@ -42,6 +42,7 @@ class ExampleTestPlanet(unittest.TestCase):
 
 
 class TestRoboLabPlanet(unittest.TestCase):
+    maxDiff = None
     def setUp(self):
         """
         Instantiates the planet data structure and fills it with paths

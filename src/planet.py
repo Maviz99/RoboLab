@@ -83,8 +83,8 @@ class Planet:
         if target_node not in self.paths:
             self.paths[target_node] = {}
         #update reverse value
-        reverse_value = (target_direction.value + 180) % 360
-        reverse_direction = Direction(reverse_value)
+        reverse_direction_value = (start_direction.value + 180) % 360
+        reverse_direction = Direction(reverse_direction_value)
         #Den Rückweg im Path hinzufügen:
         self.paths[target_node][reverse_direction] = (start_node, start_direction, weight)    
 
