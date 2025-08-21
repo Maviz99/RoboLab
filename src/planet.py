@@ -110,7 +110,7 @@ class Planet:
         """
 
         # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+        return self.paths
 
     # DO NOT EDIT THE METHOD SIGNATURE
     def shortest_path(self, start: Node, target: Node) -> Optional[ShortestPath]:

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#Den src Pfad hier hinzufügen
+import sys
+sys.path.append('..')
 
 import unittest
 from planet import Direction, Planet
