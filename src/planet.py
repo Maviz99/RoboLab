@@ -53,7 +53,7 @@ class Planet:
     # DO NOT EDIT THE METHOD SIGNATURE
     def __init__(self):
         """ Initializes the data structure """
-        self.paths = {}
+        self.paths = {} #In diesem Dic speichern wir alle Knoten und die von ihnen ausgehenden Wege.
 
     # DO NOT EDIT THE METHOD SIGNATURE
     def add_path(self, start: Tuple[Node, Direction], target: Tuple[Node, Direction],
@@ -68,9 +68,11 @@ class Planet:
         :param weight: Integer
         :return: void
         """
-
+        
         # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+        
+        #start_node ist die Position und start_direction ist die Direction dafür
+        start_node , start_direction = start
 
     # DO NOT EDIT THE METHOD SIGNATURE
     def get_paths(self) -> Dict[Node, OutgoingPaths]:
