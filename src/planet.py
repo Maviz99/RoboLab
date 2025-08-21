@@ -68,11 +68,15 @@ class Planet:
         :param weight: Integer
         :return: void
         """
-        
         # YOUR CODE FOLLOWS (remove pass, please!)
         
         #start_node ist die Position und start_direction ist die Direction dafür
         start_node , start_direction = start
+        #Ziel Informationen:
+        target_node , target_direction = target
+
+
+
 
     # DO NOT EDIT THE METHOD SIGNATURE
     def get_paths(self) -> Dict[Node, OutgoingPaths]:
