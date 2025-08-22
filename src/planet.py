@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import heapq  #Für die short_path Mehod (Prioritätswarteschlange)
+
 # Attention: Do not import the ev3dev.ev3 module in this file
 from enum import IntEnum, unique
 from typing import Optional, List, Tuple, Dict
@@ -128,4 +130,14 @@ class Planet:
         """
 
         # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+        #Prüfen ob der target und start Knoten auf der Karte existieren
+        if start not in self.paths or target not in self.paths:
+            return None
+        #Ein Dic für Distanzes definieren
+        distances={node:float('inf') for node in self.paths}
+        #Nur der Startpunkt hat die Distanz 0 alle andere Knoten haben Distanz unendlich
+        distances[start]=0
+        #Ein Dic für vorherigen Knoten definieren um später zu dem Startpunkt zurückkommen zu können.
+        vorgänger={}
+        #Eine Warte Schlange erstellen:
+        pq=[(0,start)]
