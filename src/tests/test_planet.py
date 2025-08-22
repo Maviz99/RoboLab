@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #Den src Pfad hier hinzufügen
-import sys
-sys.path.append('..')
+import sys #Standardmodul um die Pfade von Modulen nachfragen
+sys.path.append('..')#relativ path zu vorherigen Ordner also src
 
 import unittest
 from planet import Direction, Planet
