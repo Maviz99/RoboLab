@@ -161,6 +161,7 @@ class Planet:
                         distances[neighbor_node] = new_distance
                         #Wir speichern in vorgänger Liste, dass wir diesen Knoten erreicht haben.
                         vorgänger[neighbor_node] = (current_node, direction)
+                        #Unsere Warte Schlange aktualisieren an der richtigen Position mit heapq
                         heapq.heappush(pq, (new_distance, neighbor_node))
 
 
