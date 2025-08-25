@@ -90,6 +90,15 @@ class TestRoboLabPlanet(unittest.TestCase):
         Requirement: Minimum distance is three nodes (two paths in list returned)
         """
         #self.fail('implement me!')
+        #Die Mehthode gibt den Pfad als Liste von Tupeln zurück.
+        expected_path = [
+            ((0, 0), Direction.NORTH),
+            ((0, 1), Direction.EAST),
+            ((1, 1), Direction.SOUTH)
+        ]
+        actual_path = self.planet.shortest_path((0, 0), (1, 0))
+        #Überprüfen, ob die Ergebnisse gleich sind.
+        self.assertEqual(actual_path, expected_path)
 
     def test_target_not_reachable(self):
         """
