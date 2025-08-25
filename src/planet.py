@@ -141,3 +141,26 @@ class Planet:
         vorgänger={}
         #Eine Warte Schlange erstellen:
         pq=[(0,start)]
+        #Die Schleife:
+        #pq(unsere Warte Schlange)läuft,solange sie nicht leer ist.
+        while pq:
+            #heapq gibt uns den Knoten mit der gerinste Entfernung
+            current_distance, current_node = heapq.heappop(pq)
+            #Dieser Schritt ist doch klar. Wir brauchen kurzesten Weg.
+            if current_distance > distances[current_node]:
+                continue
+            if current_node==target:
+                break #Wir haben das Ziel gefunden.
+            if current_node in self.paths: 
+                #Die Nachbarn von dem aktuellen Knoten finden:
+                for direction, (neighbor_node, _, weight) in self.paths[current_node].items():
+                    
+                    new_distance = current_distance + weight
+                    #Die neue Distanzen schauen zu gucken, ob sie besser sind
+                    if new_distance < distances[neighbor_node]:
+                        distances[neighbor_node] = new_distance
+                        #Wir speichern in vorgänger Liste, dass wir diesen Knoten erreicht haben.
+                        vorgänger[neighbor_node] = (current_node, direction)
+                        heapq.heappush(pq, (new_distance, neighbor_node))
+
+
