@@ -163,5 +163,18 @@ class Planet:
                         vorgänger[neighbor_node] = (current_node, direction)
                         #Unsere Warte Schlange aktualisieren an der richtigen Position mit heapq
                         heapq.heappush(pq, (new_distance, neighbor_node))
-
+        #jetzt mit der vorgänger Liste konstruieren wir den Weg von start zu target 
+        if target not in vorgänger:
+             return None #Target gibt's nicht in unseren besuchten Knoten
+        #Für den rückwärten Weg eine Liste erstellen
+        path = [] 
+        #Wir fangen mit dem Target als current Node an.
+        current_node = target
+        while current_node != start:
+             prev_node, direction = vorgänger.get(current_node)
+             path.insert(0, (prev_node, direction))
+             #current node einen Schritt zurück aktualisieren
+             current_node = prev_node
+        
+        return path
 
