@@ -56,6 +56,7 @@ class TestRoboLabPlanet(unittest.TestCase):
         self.planet.add_path(((0, 0), Direction.NORTH), ((0, 1), Direction.SOUTH), 50)
         self.planet.add_path(((0, 1), Direction.EAST), ((1, 1), Direction.WEST), 50)
         self.planet.add_path(((1, 1), Direction.SOUTH), ((1, 0), Direction.NORTH), 50)
+        self.planet.add_path(((0,0),Direction.EAST),((1,0),Direction.WEST),50)
         print("--- Inhalt der Karte nach add_path-Aufrufen ---")
         print(self.planet.get_paths())
         print("-------------------------------------------------")
@@ -65,10 +66,10 @@ class TestRoboLabPlanet(unittest.TestCase):
         This test should check that the dictionary returned by "planet.get_paths()" matches the expected structure
         """
         expected_paths = {
-            (0, 0): {Direction.NORTH: ((0, 1), Direction.SOUTH, 50)},
+            (0, 0): {Direction.NORTH: ((0, 1), Direction.SOUTH, 50),Direction.EAST:((1,0),Direction.WEST,50)},
             (0, 1): {Direction.SOUTH: ((0, 0), Direction.NORTH, 50), Direction.EAST: ((1, 1), Direction.WEST, 50)},
             (1, 1): {Direction.WEST: ((0, 1), Direction.EAST, 50), Direction.SOUTH: ((1, 0), Direction.NORTH, 50)},
-            (1, 0): {Direction.NORTH: ((1, 1), Direction.SOUTH, 50)}
+            (1, 0): {Direction.NORTH: ((1, 1), Direction.SOUTH, 50),Direction.WEST:((0,0),Direction.EAST,50)}
         }
         #self.fail('implement me!')
         # Überprüfen das erwartete Ergebnis:
@@ -92,9 +93,7 @@ class TestRoboLabPlanet(unittest.TestCase):
         #self.fail('implement me!')
         #Die Mehthode gibt den Pfad als Liste von Tupeln zurück.
         expected_path = [
-            ((0, 0), Direction.NORTH),
-            ((0, 1), Direction.EAST),
-            ((1, 1), Direction.SOUTH)
+            ((0, 0), Direction.EAST)
         ]
         actual_path = self.planet.shortest_path((0, 0), (1, 0))
         #Überprüfen, ob die Ergebnisse gleich sind.
