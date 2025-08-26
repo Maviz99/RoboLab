@@ -57,9 +57,9 @@ class TestRoboLabPlanet(unittest.TestCase):
         self.planet.add_path(((0, 1), Direction.EAST), ((1, 1), Direction.WEST), 50)
         self.planet.add_path(((1, 1), Direction.SOUTH), ((1, 0), Direction.NORTH), 50)
         self.planet.add_path(((0,0),Direction.EAST),((1,0),Direction.WEST),50)
-        print("--- Inhalt der Karte nach add_path-Aufrufen ---")
-        print(self.planet.get_paths())
-        print("-------------------------------------------------")
+        #print("--- Inhalt der Karte nach add_path-Aufrufen ---")
+       #print(self.planet.get_paths())
+        #print("-------------------------------------------------")
 
     def test_integrity(self):
         """
@@ -104,6 +104,10 @@ class TestRoboLabPlanet(unittest.TestCase):
         This test should check that a target outside the map or at an unexplored node is not reachable
         """
         #self.fail('implement me!')
+        unreachable_target = (5,10)
+        no_way_path= self.planet.shortest_path((0,0),unreachable_target)
+        self.assertIsNone(no_way_path)
+
 
     def test_same_length(self):
         """
@@ -113,6 +117,14 @@ class TestRoboLabPlanet(unittest.TestCase):
         Requirement: Minimum of two paths with same cost exists, only one is returned by the logic implemented
         """
         #self.fail('implement me!')
+        expected_path_1= [
+            ((0,0),Direction.NORTH),((0,1),Direction.EAST)
+        ]
+        expected_path_2 = [
+            ((0,0),Direction.EAST),((1,0),Direction.NORTH)
+        ]
+        actual_path= self.planet.shortest_path((0,0),(1,1))
+        self.assertIn(actual_path,[expected_path_1,expected_path_2])
 
     def test_target_with_loop(self):
         """
@@ -122,6 +134,13 @@ class TestRoboLabPlanet(unittest.TestCase):
         Result: Target is reachable
         """
         #self.fail('implement me!')
+        #Wie fügen eine Loop Pfad hinzu 
+        self.planet.add_path(((0,0),Direction.NORTH),((0,0),Direction.WEST),50)
+        expected_path = [
+            ((0,0),Direction.EAST)
+        ]
+        actual_path=self.planet.shortest_path((0,0),(1,0))
+        self.assertEqual(actual_path,expected_path)
 
     def test_target_not_reachable_with_loop(self):
         """
@@ -131,6 +150,11 @@ class TestRoboLabPlanet(unittest.TestCase):
         Result: Target is not reachable
         """
         #self.fail('implement me!')
+        #Wir fügen noch Mal hier einen Pfad hinzu
+        self.planet.add_path(((0,0),Direction.NORTH),((0,0),Direction.WEST),50)
+        unreachable_target= (9,8)
+        no_way_path= self.planet.shortest_path((0,0),unreachable_target)
+        self.assertIsNone(no_way_path)
 
 
 if __name__ == "__main__":
