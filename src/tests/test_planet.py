@@ -61,9 +61,11 @@ class TestRoboLabPlanet(unittest.TestCase):
         self.planet.add_path(((2,1),Direction.NORTH),((2,1),Direction.NORTH),-1)
         self.planet.add_path(((1,1),Direction.NORTH),((2,3),Direction.WEST),90)
         self.planet.add_path(((2,3),Direction.SOUTH),((2,3),Direction.SOUTH),-1)
-        print("--- Inhalt der Karte nach add_path-Aufrufen ---")
-        print(self.planet.get_paths())
-        print("-------------------------------------------------")
+        #print("--- Inhalt der Karte nach add_path-Aufrufen ---")
+        #print(self.planet.get_paths())
+        #print("-------------------------------------------------")
+        #actual_path = self.planet.shortest_path((0, 0), (2, 3))
+        #print(actual_path)
 
     def test_integrity(self):
         """
