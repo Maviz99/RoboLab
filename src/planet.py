@@ -154,7 +154,8 @@ class Planet:
             if current_node in self.paths: 
                 #Die Nachbarn von dem aktuellen Knoten finden:
                 for direction, (neighbor_node, _, weight) in self.paths[current_node].items():
-                    
+                    if weight == -1:
+                        continue
                     new_distance = current_distance + weight
                     #Die neue Distanzen schauen zu gucken, ob sie besser sind
                     if new_distance < distances[neighbor_node]:

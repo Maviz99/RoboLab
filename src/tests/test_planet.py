@@ -57,9 +57,13 @@ class TestRoboLabPlanet(unittest.TestCase):
         self.planet.add_path(((0, 1), Direction.EAST), ((1, 1), Direction.WEST), 50)
         self.planet.add_path(((1, 1), Direction.SOUTH), ((1, 0), Direction.NORTH), 50)
         self.planet.add_path(((0,0),Direction.EAST),((1,0),Direction.WEST),50)
-        #print("--- Inhalt der Karte nach add_path-Aufrufen ---")
-       #print(self.planet.get_paths())
-        #print("-------------------------------------------------")
+        self.planet.add_path(((1,0),Direction.EAST),((2,1),Direction.SOUTH),60)
+        self.planet.add_path(((2,1),Direction.NORTH),((2,1),Direction.NORTH),-1)
+        self.planet.add_path(((1,1),Direction.NORTH),((2,3),Direction.WEST),90)
+        self.planet.add_path(((2,3),Direction.SOUTH),((2,3),Direction.SOUTH),-1)
+        print("--- Inhalt der Karte nach add_path-Aufrufen ---")
+        print(self.planet.get_paths())
+        print("-------------------------------------------------")
 
     def test_integrity(self):
         """
@@ -68,8 +72,12 @@ class TestRoboLabPlanet(unittest.TestCase):
         expected_paths = {
             (0, 0): {Direction.NORTH: ((0, 1), Direction.SOUTH, 50),Direction.EAST:((1,0),Direction.WEST,50)},
             (0, 1): {Direction.SOUTH: ((0, 0), Direction.NORTH, 50), Direction.EAST: ((1, 1), Direction.WEST, 50)},
-            (1, 1): {Direction.WEST: ((0, 1), Direction.EAST, 50), Direction.SOUTH: ((1, 0), Direction.NORTH, 50)},
-            (1, 0): {Direction.NORTH: ((1, 1), Direction.SOUTH, 50),Direction.WEST:((0,0),Direction.EAST,50)}
+            (1, 1): {Direction.WEST: ((0, 1), Direction.EAST, 50), Direction.SOUTH: ((1, 0), Direction.NORTH, 50),
+                      Direction.NORTH:((2,3),Direction.WEST,90)},
+            (1, 0): {Direction.NORTH: ((1, 1), Direction.SOUTH, 50),Direction.WEST:((0,0),Direction.EAST,50),
+                     Direction.EAST:((2,1),Direction.SOUTH,60)},
+            (2,1):{Direction.SOUTH:((1,0),Direction.EAST,60), Direction.NORTH:((2,1),Direction.NORTH,-1)},
+            (2,3):{Direction.SOUTH:((2,3),Direction.SOUTH,-1), Direction.WEST:((1,1),Direction.NORTH,90)}
         }
         #self.fail('implement me!')
         # Überprüfen das erwartete Ergebnis:
@@ -92,12 +100,19 @@ class TestRoboLabPlanet(unittest.TestCase):
         """
         #self.fail('implement me!')
         #Die Mehthode gibt den Pfad als Liste von Tupeln zurück.
-        expected_path = [
-            ((0, 0), Direction.EAST)
+        expected_path_1 = [
+            ((0, 0), Direction.EAST),
+            ((1,0), Direction.NORTH),
+            ((1,1),Direction.NORTH)
         ]
-        actual_path = self.planet.shortest_path((0, 0), (1, 0))
+        expected_path_2 =[
+            ((0,0),Direction.NORTH),
+            ((0,1),Direction.EAST),
+            ((1,1),Direction.NORTH)
+        ]
+        actual_path = self.planet.shortest_path((0, 0), (2, 3))
         #Überprüfen, ob die Ergebnisse gleich sind.
-        self.assertEqual(actual_path, expected_path)
+        self.assertIn(actual_path, [expected_path_1,expected_path_2])
 
     def test_target_not_reachable(self):
         """
