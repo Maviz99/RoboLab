@@ -1,13 +1,25 @@
-# RoboLab Spring Template
+# RoboLab – Autonomous Robot Exploration
 
-Template for the RoboLab course in spring which is conducted by the Systems Engineering Group at the Department of Computer Science, TU Dresden.
+## Overview
+This project was developed during the RoboLab internship at TU Dresden.
+The goal was to design and program an autonomous robot that explores unknown planets and communicates with a central system.
 
-* Acts as a base repository that groups clone and then set the upstream to their assigned repo afterward.
-* Provides scripts to speed up and automate the process of deploying as well as executing Python code on LEGO MINDSTORMS EV3 robots running the customized, Debian based operating system.
-* Includes the programming interface which is used to check parts of the students solutions in the final exam.
+## My Contributions
+- Implemented parts of the robot navigation and logic
+- Worked with Git and SSH for version control
+- Tested and improved robot behavior in different scenarios
+- Collaborated in a team to solve complex programming tasks
 
+## Technologies
+- Python
+- Git / GitLab
+- Embedded Systems
 
-## Help
+## Results
+- Successfully completed all required scenarios
+- Final grade: 1.0
 
-Please consult the [RoboLab Docs](https://robolab.inf.tu-dresden.de/spring).
-We provide extensive sections about this template, the Deploy-Script and the interfaces.
+---
+
+## Original Template Description
+(The following section is part of the official RoboLab template)
